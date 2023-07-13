@@ -116,7 +116,7 @@ export interface AuthApplicationsService {
     applicationId: string,
     data: ApplicationVersionCreation,
     options?: OptionsBase
-  ): Promise<ApplicationVersion>;
+  ): Promise<OAuth1ApplicationVersion|OAuth2ApplicationVersion>;
   /**
    * ## Delete an application version
    * You can use this function to remove an existing appliction version.
@@ -209,10 +209,6 @@ export interface ApplicationVersion {
   id: string;
   /** The name of the application version. We suggest using semantic versioning vX.X.X (e.g. v1.2.0) */
   name: string;
-  /** The consumerKey associated with the application version */
-  consumerKey: string;
-  /** The consumerSecret associated with the application version */
-  consumerSecret: string;
   /** The timestap when this version was created */
   creationTimestamp: Date;
 }
@@ -243,5 +239,5 @@ export type OAuth2ApplicationUpdate = ApplicationUpdate &
   Partial<Pick<OAuth2Application, 'logo' | 'redirectUris'>>;
 
 export type ApplicationVersionCreation = Required<
-  Partial<Pick<ApplicationVersion, 'name' | 'consumerKey' | 'consumerSecret'>>
+  Partial<Pick<ApplicationVersion, 'name'>>
 >;
