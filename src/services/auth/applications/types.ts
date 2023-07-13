@@ -209,6 +209,10 @@ export interface ApplicationVersion {
   id: string;
   /** The name of the application version. We suggest using semantic versioning vX.X.X (e.g. v1.2.0) */
   name: string;
+  /** The consumerKey associated with the application version */
+  consumerKey: string;
+  /** The consumerSecret associated with the application version */
+  consumerSecret: string;
   /** The timestap when this version was created */
   creationTimestamp: Date;
 }
@@ -239,5 +243,5 @@ export type OAuth2ApplicationUpdate = ApplicationUpdate &
   Partial<Pick<OAuth2Application, 'logo' | 'redirectUris'>>;
 
 export type ApplicationVersionCreation = Required<
-  Partial<Pick<ApplicationVersion, 'name'>>
+  Partial<Pick<ApplicationVersion, 'name' | 'consumerKey' | 'consumerSecret'>>
 >;
